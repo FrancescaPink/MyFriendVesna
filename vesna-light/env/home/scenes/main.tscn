@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dh1aycmjwh3kj"]
+
+[ext_resource type="PackedScene" uid="uid://x3rctj7qbpxv" path="res://scenes/home.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://puks5k503xp3" path="res://scenes/city.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://c5nhssu1nou1m" path="res://scenes/courtroom_interior.tscn" id="3_tribunale"]
+
+[node name="GlobalWorld" type="Node3D" unique_id=1243636688]
+
+[node name="Root" parent="." unique_id=434984042 instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3510332, 0, -0.64080167)
+
+[node name="City" parent="." unique_id=1940305371 instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.105118, 0, 57.91886)
+
+[node name="Tribunale" parent="." unique_id=220247361 instance=ExtResource("3_tribunale")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 200)

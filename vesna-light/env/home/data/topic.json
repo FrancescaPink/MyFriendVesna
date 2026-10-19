@@ -1,0 +1,101 @@
+{
+  "comeva": {
+	"testo_bottone": "Come va?"
+  },
+  "cibo": {
+	"testo_bottone": "Vuoi un croissant?"
+  },
+  "ringraziamento": {
+	"testo_bottone": "Di nulla, mangia pure!"
+  },
+  "confessione": {
+	"testo_bottone": "Cosa mi devi dire?"
+  },
+  "perche_chiavi": {
+	"testo_bottone": "Perché Finn aveva le chiavi di casa tua?"
+  },
+  "casa_nuova": {
+	"testo_bottone": "Come ti trovi nella nuova casa?"
+  },
+  "lavoro": {
+	"testo_bottone": "Di cosa ti occupavi al lavoro?"
+  },
+  "famiglia": {
+	"testo_bottone": "Hai famiglia o amici qui in città?"
+  },
+  "scatoloni_grazie": {
+	"testo_bottone": "Figurati, ci mancherebbe!"
+  },
+  "auto_sospetta": {
+	"testo_bottone": "Ha visto qualcosa quella notte?"
+  },
+  "lamentela_capo": {
+	"testo_bottone": "Sa qualcosa sulla sicurezza in azienda?"
+  },
+  "pausa_caffe": {
+	"testo_bottone": "Perché non va a prendere un caffè al bar?"
+  },
+  "finn_al_bar": {
+	"testo_bottone": "Conosci un certo Finn?"
+  },
+  "chiave_bob": {
+	"testo_bottone": "Sa niente di una chiave di riserva di Bob?"
+  },
+  "piante": {
+	"testo_bottone": "E delle piante di Bob durante il trasloco?"
+  },
+  "contraddizione_finn": {
+	"testo_bottone": "Le date non tornano, non trova?"
+  },
+  "zona_sicura": {
+	"testo_bottone": "Si sposti dalla strada, è pericoloso lì."
+  },
+  "telefonata_finn": {
+	"testo_bottone": "Con chi stavi parlando al telefono?"
+  },
+  "targa_fn7": {
+	"testo_bottone": "Ti dice niente una targa che inizia per FN-7?"
+  },
+  "sicurezza_novatech": {
+	"testo_bottone": "Sapeva degli allarmi di sicurezza ignorati?"
+  },
+  "contraddizione_jefferson": {
+	"testo_bottone": "Come fa a sapere cosa c'era nei report?"
+  },
+  "uscita_casa": {
+    "testo_bottone": "Sì, voglio andare in città"
+  },
+  "entra_tribunale": {
+    "testo_bottone": "Sì, voglio entrare nel tribunale"
+  },
+  "deposita_prove": {
+	"testo_bottone": "Deposito le prove raccolte"
+  },
+  "ud_r1a": {
+	"testo_bottone": "Nessuno: Bob vive solo"
+  },
+  "ud_r1b": {
+	"testo_bottone": "Finn, un ex collega, ne aveva una copia"
+  },
+  "ud_r1c": {
+	"testo_bottone": "Il direttore della NovaTech"
+  },
+  "ud_r2a": {
+	"testo_bottone": "Non so spiegarlo, Vostro Onore"
+  },
+  "ud_r2b": {
+	"testo_bottone": "Il portatile era acceso e in casa poteva entrare chi aveva le chiavi"
+  },
+  "ud_r2c": {
+	"testo_bottone": "Un indirizzo IP si può falsificare"
+  },
+  "ud_r3a": {
+	"testo_bottone": "No, l'azienda era in regola"
+  },
+  "ud_r3b": {
+	"testo_bottone": "Sì: gli allarmi di sicurezza erano ignorati da settimane"
+  },
+  "ud_r3c": {
+	"testo_bottone": "Sì: l'azienda non aveva un antivirus"
+  }
+}

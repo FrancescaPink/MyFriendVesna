@@ -1,0 +1,6 @@
+**/.gradle/**
+**/.godot/**
+**/build/**
+**/.DS_Store
+**/.idea/**
+**/bin/**

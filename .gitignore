@@ -1,0 +1,8 @@
+**/.tmp.driveupload/**
+**/.tmp.drivedownload/**
+vesna-light/env/home/.godot/
+vesna-light/mind/build/
+vesna-light/mind/.gradle/
+**/__pycache__/
+vesna-light/mind/banco_negoziazione/_lavoro*/
+vesna-light/mind/banco_negoziazione/_classpath.txt

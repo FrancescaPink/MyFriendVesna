@@ -1,0 +1,1469 @@
+[gd_scene format=3 uid="uid://c5nhssu1nou1m"]
+
+[ext_resource type="PackedScene" uid="uid://dqch41rmw7x2p" path="res://assets/courtroom-kit/court_chair.tscn" id="1_chair"]
+[ext_resource type="PackedScene" uid="uid://bpew8n3tq5vd6" path="res://assets/courtroom-kit/court_bench.tscn" id="2_bench"]
+[ext_resource type="PackedScene" uid="uid://ctbl6akfa2mnr" path="res://assets/courtroom-kit/court_table.tscn" id="3_table"]
+[ext_resource type="PackedScene" uid="uid://b5v6bgs5bh3e2" path="res://scenes/bob.tscn" id="90_agente"]
+[ext_resource type="Script" uid="uid://ls241mgkpr1h" path="res://scripts/sensori/sensor_dialogue.gd" id="91_sensore"]
+[ext_resource type="Script" uid="uid://d25bv1vudnn75" path="res://scripts/sensori/banco_difesa.gd" id="99_bancodif"]
+[ext_resource type="Texture2D" path="res://assets/character-skins/judge.png" id="skin_giudice"]
+[ext_resource type="Texture2D" path="res://assets/character-skins/lawyer.png" id="skin_procuratore"]
+
+[sub_resource type="Gradient" id="grad_wood_floor"]
+offsets = PackedFloat32Array(0, 0.4, 0.7, 1)
+colors = PackedColorArray(0.42, 0.28, 0.15, 1, 0.5, 0.35, 0.19, 1, 0.58, 0.42, 0.24, 1, 0.65, 0.48, 0.28, 1)
+
+[sub_resource type="FastNoiseLite" id="noise_wood"]
+noise_type = 3
+frequency = 0.02
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="tex_wood_floor"]
+noise = SubResource("noise_wood")
+color_ramp = SubResource("grad_wood_floor")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_floor"]
+albedo_texture = SubResource("tex_wood_floor")
+roughness = 0.35
+uv1_scale = Vector3(1.8, 1.8, 1.8)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="mesh_floor"]
+material = SubResource("mat_wood_floor")
+size = Vector3(16.6, 0.2, 22.6)
+
+[sub_resource type="StandardMaterial3D" id="mat_ceiling"]
+albedo_color = Color(0.93, 0.92, 0.89, 1)
+
+[sub_resource type="BoxMesh" id="mesh_ceiling"]
+material = SubResource("mat_ceiling")
+size = Vector3(16.6, 0.2, 22.6)
+
+[sub_resource type="Gradient" id="grad_wall"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.82, 0.78, 0.68, 1, 0.86, 0.82, 0.73, 1, 0.89, 0.86, 0.78, 1)
+
+[sub_resource type="FastNoiseLite" id="noise_fine"]
+noise_type = 3
+frequency = 0.12
+
+[sub_resource type="NoiseTexture2D" id="tex_wall"]
+noise = SubResource("noise_fine")
+color_ramp = SubResource("grad_wall")
+seamless = true
+
+[sub_resource type="NoiseTexture2D" id="tex_normal_fine"]
+noise = SubResource("noise_fine")
+seamless = true
+as_normal_map = true
+bump_strength = 2.0
+
+[sub_resource type="StandardMaterial3D" id="mat_wall"]
+albedo_texture = SubResource("tex_wall")
+normal_enabled = true
+normal_scale = 0.25
+normal_texture = SubResource("tex_normal_fine")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="mesh_wall_side"]
+material = SubResource("mat_wall")
+size = Vector3(0.3, 5, 22.6)
+
+[sub_resource type="BoxMesh" id="mesh_wall_end"]
+material = SubResource("mat_wall")
+size = Vector3(16.6, 5, 0.3)
+
+[sub_resource type="Gradient" id="grad_wood_mid"]
+offsets = PackedFloat32Array(0, 0.45, 0.75, 1)
+colors = PackedColorArray(0.34, 0.21, 0.11, 1, 0.42, 0.27, 0.15, 1, 0.48, 0.32, 0.18, 1, 0.56, 0.39, 0.22, 1)
+
+[sub_resource type="NoiseTexture2D" id="tex_wood_mid"]
+noise = SubResource("noise_wood")
+color_ramp = SubResource("grad_wood_mid")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_mid"]
+albedo_texture = SubResource("tex_wood_mid")
+roughness = 0.55
+uv1_scale = Vector3(1.4, 1.4, 1.4)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="mesh_wainscot_end"]
+material = SubResource("mat_wood_mid")
+size = Vector3(16, 1.35, 0.07)
+
+[sub_resource type="BoxMesh" id="mesh_wainscot_side"]
+material = SubResource("mat_wood_mid")
+size = Vector3(0.07, 1.35, 21.8)
+
+[sub_resource type="BoxMesh" id="mesh_crown_end"]
+material = SubResource("mat_wood_mid")
+size = Vector3(16.6, 0.18, 0.18)
+
+[sub_resource type="BoxMesh" id="mesh_crown_side"]
+material = SubResource("mat_wood_mid")
+size = Vector3(0.18, 0.18, 22.6)
+
+[sub_resource type="Gradient" id="grad_wood_dark"]
+offsets = PackedFloat32Array(0, 0.45, 0.75, 1)
+colors = PackedColorArray(0.2, 0.12, 0.07, 1, 0.28, 0.17, 0.1, 1, 0.33, 0.21, 0.12, 1, 0.4, 0.27, 0.15, 1)
+
+[sub_resource type="NoiseTexture2D" id="tex_wood_dark"]
+noise = SubResource("noise_wood")
+color_ramp = SubResource("grad_wood_dark")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_dark"]
+albedo_texture = SubResource("tex_wood_dark")
+roughness = 0.5
+uv1_scale = Vector3(1.4, 1.4, 1.4)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="mesh_beam_x"]
+material = SubResource("mat_wood_dark")
+size = Vector3(16.4, 0.28, 0.32)
+
+[sub_resource type="BoxMesh" id="mesh_beam_z"]
+material = SubResource("mat_wood_dark")
+size = Vector3(0.32, 0.28, 22.4)
+
+[sub_resource type="BoxMesh" id="mesh_pilaster"]
+material = SubResource("mat_wood_mid")
+size = Vector3(0.22, 3.5, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_capital"]
+material = SubResource("mat_wood_dark")
+size = Vector3(0.3, 0.15, 0.62)
+
+[sub_resource type="Gradient" id="grad_carpet"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.33, 0.07, 0.08, 1, 0.42, 0.1, 0.11, 1, 0.5, 0.14, 0.15, 1)
+
+[sub_resource type="NoiseTexture2D" id="tex_carpet"]
+noise = SubResource("noise_fine")
+color_ramp = SubResource("grad_carpet")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="mat_carpet"]
+albedo_texture = SubResource("tex_carpet")
+normal_enabled = true
+normal_scale = 0.6
+normal_texture = SubResource("tex_normal_fine")
+uv1_scale = Vector3(3, 3, 3)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="mesh_carpet_well"]
+material = SubResource("mat_carpet")
+size = Vector3(13.5, 0.03, 7)
+
+[sub_resource type="BoxMesh" id="mesh_carpet_aisle"]
+material = SubResource("mat_carpet")
+size = Vector3(2.2, 0.03, 10.5)
+
+[sub_resource type="StandardMaterial3D" id="mat_brass"]
+albedo_color = Color(0.9, 0.72, 0.3, 1)
+metallic = 1.0
+roughness = 0.25
+
+[sub_resource type="BoxMesh" id="mesh_trim_aisle"]
+material = SubResource("mat_brass")
+size = Vector3(0.1, 0.032, 10.5)
+
+[sub_resource type="BoxMesh" id="mesh_judge_tier1"]
+material = SubResource("mat_wood_mid")
+size = Vector3(7.6, 0.35, 3.4)
+
+[sub_resource type="BoxMesh" id="mesh_judge_tier2"]
+material = SubResource("mat_wood_mid")
+size = Vector3(6.6, 0.35, 2.6)
+
+[sub_resource type="BoxMesh" id="mesh_bench_front"]
+material = SubResource("mat_wood_dark")
+size = Vector3(5.8, 1.55, 0.55)
+
+[sub_resource type="BoxMesh" id="mesh_bench_top"]
+material = SubResource("mat_wood_dark")
+size = Vector3(6.2, 0.09, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_leather_green"]
+albedo_color = Color(0.1, 0.24, 0.14, 1)
+roughness = 0.6
+
+[sub_resource type="BoxMesh" id="mesh_bench_inlay"]
+material = SubResource("mat_leather_green")
+size = Vector3(5.6, 0.02, 0.7)
+
+[sub_resource type="BoxMesh" id="mesh_bench_wing"]
+material = SubResource("mat_wood_dark")
+size = Vector3(0.55, 1.55, 1.6)
+
+[sub_resource type="BoxMesh" id="mesh_backpanel"]
+material = SubResource("mat_wood_dark")
+size = Vector3(8.5, 4.3, 0.18)
+
+[sub_resource type="CylinderMesh" id="mesh_emblem"]
+material = SubResource("mat_brass")
+top_radius = 0.6
+bottom_radius = 0.6
+height = 0.07
+
+[sub_resource type="BoxMesh" id="mesh_banner_stripe"]
+size = Vector3(0.3, 2.2, 0.06)
+
+[sub_resource type="StandardMaterial3D" id="mat_flag_green"]
+albedo_color = Color(0, 0.36, 0.23, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_flag_white"]
+albedo_color = Color(0.93, 0.93, 0.93, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_flag_red"]
+albedo_color = Color(0.8, 0.16, 0.16, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_flag_blue"]
+albedo_color = Color(0.06, 0.2, 0.5, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="mesh_banner_eu"]
+material = SubResource("mat_flag_blue")
+size = Vector3(0.9, 2.2, 0.06)
+
+[sub_resource type="CylinderMesh" id="mesh_flagpole"]
+material = SubResource("mat_wood_dark")
+top_radius = 0.035
+bottom_radius = 0.035
+height = 2.7
+
+[sub_resource type="BoxMesh" id="mesh_flag_stripe"]
+size = Vector3(0.03, 1.1, 0.2)
+
+[sub_resource type="BoxMesh" id="mesh_flag_eu"]
+material = SubResource("mat_flag_blue")
+size = Vector3(0.03, 1.1, 0.6)
+
+[sub_resource type="CylinderMesh" id="mesh_gavel_head"]
+material = SubResource("mat_wood_mid")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.16
+
+[sub_resource type="CylinderMesh" id="mesh_gavel_block"]
+material = SubResource("mat_wood_dark")
+top_radius = 0.09
+bottom_radius = 0.09
+height = 0.04
+
+[sub_resource type="CylinderMesh" id="mesh_lamp_base"]
+material = SubResource("mat_brass")
+top_radius = 0.05
+bottom_radius = 0.09
+height = 0.05
+
+[sub_resource type="CylinderMesh" id="mesh_lamp_stem"]
+material = SubResource("mat_brass")
+top_radius = 0.016
+bottom_radius = 0.016
+height = 0.34
+
+[sub_resource type="StandardMaterial3D" id="mat_lamp_green"]
+albedo_color = Color(0.05, 0.35, 0.15, 1)
+roughness = 0.3
+emission_enabled = true
+emission = Color(0.1, 0.5, 0.2, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="BoxMesh" id="mesh_lamp_shade"]
+material = SubResource("mat_lamp_green")
+size = Vector3(0.38, 0.13, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="mat_paper"]
+albedo_color = Color(0.95, 0.94, 0.9, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="mesh_paper"]
+material = SubResource("mat_paper")
+size = Vector3(0.3, 0.008, 0.21)
+
+[sub_resource type="BoxMesh" id="mesh_witness_platform"]
+material = SubResource("mat_wood_mid")
+size = Vector3(2.2, 0.35, 2.2)
+
+[sub_resource type="BoxMesh" id="mesh_witness_front"]
+material = SubResource("mat_wood_dark")
+size = Vector3(1.7, 1.15, 0.09)
+
+[sub_resource type="BoxMesh" id="mesh_witness_side"]
+material = SubResource("mat_wood_dark")
+size = Vector3(0.09, 1.15, 1.5)
+
+[sub_resource type="BoxMesh" id="mesh_book"]
+size = Vector3(0.26, 0.055, 0.17)
+
+[sub_resource type="StandardMaterial3D" id="mat_drape"]
+albedo_color = Color(0.3, 0.06, 0.08, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="mesh_jury_tier1"]
+material = SubResource("mat_wood_mid")
+size = Vector3(2.6, 0.3, 7.4)
+
+[sub_resource type="BoxMesh" id="mesh_jury_tier2"]
+material = SubResource("mat_wood_mid")
+size = Vector3(1.3, 0.3, 7.4)
+
+[sub_resource type="BoxMesh" id="mesh_jury_panel"]
+material = SubResource("mat_wood_mid")
+size = Vector3(0.07, 0.9, 7.4)
+
+[sub_resource type="BoxMesh" id="mesh_jury_top"]
+material = SubResource("mat_wood_dark")
+size = Vector3(0.16, 0.06, 7.6)
+
+[sub_resource type="BoxMesh" id="mesh_lectern_base"]
+material = SubResource("mat_wood_dark")
+size = Vector3(0.55, 1.12, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_lectern_top"]
+material = SubResource("mat_wood_dark")
+size = Vector3(0.65, 0.06, 0.55)
+
+[sub_resource type="BoxMesh" id="mesh_rail_top"]
+material = SubResource("mat_wood_dark")
+size = Vector3(7.3, 0.07, 0.14)
+
+[sub_resource type="BoxMesh" id="mesh_rail_mid"]
+material = SubResource("mat_wood_mid")
+size = Vector3(7.3, 0.5, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh_rail_post"]
+material = SubResource("mat_wood_dark")
+size = Vector3(0.11, 1, 0.11)
+
+[sub_resource type="BoxMesh" id="mesh_door_panel"]
+material = SubResource("mat_wood_dark")
+size = Vector3(1.25, 2.7, 0.14)
+
+[sub_resource type="BoxMesh" id="mesh_handle"]
+material = SubResource("mat_brass")
+size = Vector3(0.05, 0.3, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh_door_top"]
+material = SubResource("mat_wood_mid")
+size = Vector3(2.75, 0.18, 0.2)
+
+[sub_resource type="BoxMesh" id="mesh_door_jamb"]
+material = SubResource("mat_wood_mid")
+size = Vector3(0.18, 2.7, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="mat_clock_face"]
+albedo_color = Color(0.96, 0.95, 0.9, 1)
+roughness = 0.6
+
+[sub_resource type="CylinderMesh" id="mesh_clock_face"]
+material = SubResource("mat_clock_face")
+top_radius = 0.35
+bottom_radius = 0.35
+height = 0.05
+
+[sub_resource type="StandardMaterial3D" id="mat_bronze"]
+albedo_color = Color(0.18, 0.12, 0.08, 1)
+metallic = 0.7
+roughness = 0.4
+
+[sub_resource type="TorusMesh" id="mesh_clock_rim"]
+material = SubResource("mat_bronze")
+inner_radius = 0.33
+outer_radius = 0.41
+
+[sub_resource type="BoxMesh" id="mesh_hand_hour"]
+material = SubResource("mat_bronze")
+size = Vector3(0.035, 0.22, 0.02)
+
+[sub_resource type="BoxMesh" id="mesh_hand_min"]
+material = SubResource("mat_bronze")
+size = Vector3(0.025, 0.3, 0.02)
+
+[sub_resource type="BoxMesh" id="mesh_win_frame"]
+material = SubResource("mat_wood_mid")
+size = Vector3(0.2, 2.3, 1.7)
+
+[sub_resource type="StandardMaterial3D" id="mat_glass"]
+albedo_color = Color(0.85, 0.9, 0.98, 1)
+emission_enabled = true
+emission = Color(0.9, 0.95, 1, 1)
+emission_energy_multiplier = 2.2
+
+[sub_resource type="BoxMesh" id="mesh_win_glass"]
+material = SubResource("mat_glass")
+size = Vector3(0.08, 2, 1.4)
+
+[sub_resource type="BoxMesh" id="mesh_drape"]
+material = SubResource("mat_drape")
+size = Vector3(0.14, 2.7, 0.42)
+
+[sub_resource type="BoxMesh" id="mesh_pelmet"]
+material = SubResource("mat_drape")
+size = Vector3(0.16, 0.26, 2.5)
+
+[sub_resource type="CylinderMesh" id="mesh_pendant_rod"]
+material = SubResource("mat_bronze")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.85
+
+[sub_resource type="CylinderMesh" id="mesh_pendant_shade"]
+material = SubResource("mat_bronze")
+top_radius = 0.14
+bottom_radius = 0.45
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_light_warm"]
+albedo_color = Color(1, 0.95, 0.85, 1)
+emission_enabled = true
+emission = Color(1, 0.85, 0.6, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="SphereMesh" id="mesh_pendant_bulb"]
+material = SubResource("mat_light_warm")
+radius = 0.16
+height = 0.32
+
+[sub_resource type="BoxShape3D" id="shape_floor"]
+size = Vector3(16.6, 0.2, 22.6)
+
+[sub_resource type="BoxShape3D" id="shape_wall_side"]
+size = Vector3(0.3, 5, 22.6)
+
+[sub_resource type="BoxShape3D" id="shape_wall_end"]
+size = Vector3(16.6, 5, 0.3)
+
+[sub_resource type="BoxShape3D" id="shape_judge_tier1"]
+size = Vector3(7.6, 0.35, 3.4)
+
+[sub_resource type="BoxShape3D" id="shape_judge_tier2"]
+size = Vector3(6.6, 0.35, 2.6)
+
+[sub_resource type="BoxShape3D" id="shape_gradino_giudice"]
+size = Vector3(6, 1.05, 1.25)
+
+[sub_resource type="BoxShape3D" id="shape_bench"]
+size = Vector3(6.2, 1.7, 1.1)
+
+[sub_resource type="BoxShape3D" id="shape_jury_tier1"]
+size = Vector3(2.6, 0.3, 7.4)
+
+[sub_resource type="BoxShape3D" id="shape_jury_tier2"]
+size = Vector3(1.3, 0.3, 7.4)
+
+[sub_resource type="BoxShape3D" id="shape_rail"]
+size = Vector3(7.3, 1.1, 0.16)
+
+[sub_resource type="BoxShape3D" id="shape_witness"]
+size = Vector3(2.2, 0.35, 2.2)
+
+[sub_resource type="BoxShape3D" id="shape_lectern"]
+size = Vector3(0.6, 1.2, 0.55)
+
+[sub_resource type="BoxShape3D" id="shape_zona_banco"]
+size = Vector3(2.6, 2, 2.2)
+
+[sub_resource type="LabelSettings" id="stile_avviso_aula"]
+font_size = 39
+outline_size = 14
+outline_color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+
+[sub_resource type="BoxShape3D" id="shape_region"]
+size = Vector3(16, 5, 22)
+
+[sub_resource type="Environment" id="env_tribunale"]
+background_mode = 1
+background_color = Color(0.05, 0.04, 0.035, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.55, 0.46, 0.36, 1)
+ambient_light_energy = 0.55
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dialogo_aula"]
+radius = 1.6
+
+[sub_resource type="StandardMaterial3D" id="mat_giudice"]
+albedo_texture = ExtResource("skin_giudice")
+[sub_resource type="StandardMaterial3D" id="mat_procuratore"]
+albedo_texture = ExtResource("skin_procuratore")
+
+[node name="CourtroomInterior" type="Node3D" unique_id=166005212]
+
+[node name="Structure" type="Node3D" parent="." unique_id=1263534599]
+
+[node name="Floor" type="MeshInstance3D" parent="Structure" unique_id=1432320487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("mesh_floor")
+
+[node name="Ceiling" type="MeshInstance3D" parent="Structure" unique_id=1096122073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.1, 0)
+mesh = SubResource("mesh_ceiling")
+
+[node name="WallEast" type="MeshInstance3D" parent="Structure" unique_id=1048246525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15, 2.5, 0)
+mesh = SubResource("mesh_wall_side")
+
+[node name="WallWest" type="MeshInstance3D" parent="Structure" unique_id=1222759338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.15, 2.5, 0)
+mesh = SubResource("mesh_wall_side")
+
+[node name="WallFront" type="MeshInstance3D" parent="Structure" unique_id=1038612893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -11.15)
+mesh = SubResource("mesh_wall_end")
+
+[node name="WallBack" type="MeshInstance3D" parent="Structure" unique_id=1332862422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 11.15)
+mesh = SubResource("mesh_wall_end")
+
+[node name="WainscotFront" type="MeshInstance3D" parent="Structure" unique_id=1465134814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, -10.96)
+mesh = SubResource("mesh_wainscot_end")
+
+[node name="WainscotBack" type="MeshInstance3D" parent="Structure" unique_id=1048899812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675, 10.96)
+mesh = SubResource("mesh_wainscot_end")
+
+[node name="WainscotEast" type="MeshInstance3D" parent="Structure" unique_id=1142612167]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96, 0.675, 0)
+mesh = SubResource("mesh_wainscot_side")
+
+[node name="WainscotWest" type="MeshInstance3D" parent="Structure" unique_id=751358127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96, 0.675, 0)
+mesh = SubResource("mesh_wainscot_side")
+
+[node name="CrownFront" type="MeshInstance3D" parent="Structure" unique_id=975851956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.91, -10.91)
+mesh = SubResource("mesh_crown_end")
+
+[node name="CrownBack" type="MeshInstance3D" parent="Structure" unique_id=398860362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.91, 10.91)
+mesh = SubResource("mesh_crown_end")
+
+[node name="CrownEast" type="MeshInstance3D" parent="Structure" unique_id=1192066884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.91, 4.91, 0)
+mesh = SubResource("mesh_crown_side")
+
+[node name="CrownWest" type="MeshInstance3D" parent="Structure" unique_id=1961171256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91, 4.91, 0)
+mesh = SubResource("mesh_crown_side")
+
+[node name="BeamX1" type="MeshInstance3D" parent="Structure" unique_id=680306954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.86, -5.5)
+mesh = SubResource("mesh_beam_x")
+
+[node name="BeamX2" type="MeshInstance3D" parent="Structure" unique_id=1723214423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.86, 0)
+mesh = SubResource("mesh_beam_x")
+
+[node name="BeamX3" type="MeshInstance3D" parent="Structure" unique_id=263184767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.86, 5.5)
+mesh = SubResource("mesh_beam_x")
+
+[node name="BeamZ1" type="MeshInstance3D" parent="Structure" unique_id=893004884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4.86, 0)
+mesh = SubResource("mesh_beam_z")
+
+[node name="BeamZ2" type="MeshInstance3D" parent="Structure" unique_id=1899092416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4.86, 0)
+mesh = SubResource("mesh_beam_z")
+
+[node name="PilasterE1" type="MeshInstance3D" parent="Structure" unique_id=1908105953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87, 3.1, -8.5)
+mesh = SubResource("mesh_pilaster")
+
+[node name="CapitalE1" type="MeshInstance3D" parent="Structure" unique_id=773555847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.85, 4.75, -8.5)
+mesh = SubResource("mesh_capital")
+
+[node name="PilasterE2" type="MeshInstance3D" parent="Structure" unique_id=794224577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87, 3.1, -3.5)
+mesh = SubResource("mesh_pilaster")
+
+[node name="CapitalE2" type="MeshInstance3D" parent="Structure" unique_id=511077905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.85, 4.75, -3.5)
+mesh = SubResource("mesh_capital")
+
+[node name="PilasterE3" type="MeshInstance3D" parent="Structure" unique_id=2025800999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87, 3.1, 1.5)
+mesh = SubResource("mesh_pilaster")
+
+[node name="CapitalE3" type="MeshInstance3D" parent="Structure" unique_id=1283634931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.85, 4.75, 1.5)
+mesh = SubResource("mesh_capital")
+
+[node name="PilasterE4" type="MeshInstance3D" parent="Structure" unique_id=105176799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87, 3.1, 6.5)
+mesh = SubResource("mesh_pilaster")
+
+[node name="CapitalE4" type="MeshInstance3D" parent="Structure" unique_id=273100184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.85, 4.75, 6.5)
+mesh = SubResource("mesh_capital")
+
+[node name="PilasterW1" type="MeshInstance3D" parent="Structure" unique_id=1892101570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87, 3.1, -8.5)
+mesh = SubResource("mesh_pilaster")
+
+[node name="CapitalW1" type="MeshInstance3D" parent="Structure" unique_id=979269492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85, 4.75, -8.5)
+mesh = SubResource("mesh_capital")
+
+[node name="PilasterW2" type="MeshInstance3D" parent="Structure" unique_id=1453381311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87, 3.1, -3.5)
+mesh = SubResource("mesh_pilaster")
+
+[node name="CapitalW2" type="MeshInstance3D" parent="Structure" unique_id=1753681335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85, 4.75, -3.5)
+mesh = SubResource("mesh_capital")
+
+[node name="PilasterW3" type="MeshInstance3D" parent="Structure" unique_id=1856177027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87, 3.1, 1.5)
+mesh = SubResource("mesh_pilaster")
+
+[node name="CapitalW3" type="MeshInstance3D" parent="Structure" unique_id=1087945169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85, 4.75, 1.5)
+mesh = SubResource("mesh_capital")
+
+[node name="PilasterW4" type="MeshInstance3D" parent="Structure" unique_id=390398233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.87, 3.1, 6.5)
+mesh = SubResource("mesh_pilaster")
+
+[node name="CapitalW4" type="MeshInstance3D" parent="Structure" unique_id=566131448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85, 4.75, 6.5)
+mesh = SubResource("mesh_capital")
+
+[node name="CarpetWell" type="MeshInstance3D" parent="Structure" unique_id=1852090650]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, -4.5)
+mesh = SubResource("mesh_carpet_well")
+
+[node name="CarpetAisle" type="MeshInstance3D" parent="Structure" unique_id=1587102489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, 5.75)
+mesh = SubResource("mesh_carpet_aisle")
+
+[node name="TrimAisleLeft" type="MeshInstance3D" parent="Structure" unique_id=288554551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16, 0.018, 5.75)
+mesh = SubResource("mesh_trim_aisle")
+
+[node name="TrimAisleRight" type="MeshInstance3D" parent="Structure" unique_id=1648399576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16, 0.018, 5.75)
+mesh = SubResource("mesh_trim_aisle")
+
+[node name="JudgeArea" type="Node3D" parent="." unique_id=722440898]
+
+[node name="Tier1" type="MeshInstance3D" parent="JudgeArea" unique_id=1485164400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, -9.2)
+mesh = SubResource("mesh_judge_tier1")
+
+[node name="Tier2" type="MeshInstance3D" parent="JudgeArea" unique_id=40798428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525, -9.4)
+mesh = SubResource("mesh_judge_tier2")
+
+[node name="BenchFront" type="MeshInstance3D" parent="JudgeArea" unique_id=1948432019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.475, -8.6)
+mesh = SubResource("mesh_bench_front")
+
+[node name="BenchTop" type="MeshInstance3D" parent="JudgeArea" unique_id=1692379691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.295, -8.75)
+mesh = SubResource("mesh_bench_top")
+
+[node name="BenchInlay" type="MeshInstance3D" parent="JudgeArea" unique_id=790715860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35, -8.8)
+mesh = SubResource("mesh_bench_inlay")
+
+[node name="WingLeft" type="MeshInstance3D" parent="JudgeArea" unique_id=898979718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.475, -8.95)
+mesh = SubResource("mesh_bench_wing")
+
+[node name="WingRight" type="MeshInstance3D" parent="JudgeArea" unique_id=999666636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.475, -8.95)
+mesh = SubResource("mesh_bench_wing")
+
+[node name="BackPanel" type="MeshInstance3D" parent="JudgeArea" unique_id=1781995049]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15, -10.85)
+mesh = SubResource("mesh_backpanel")
+
+[node name="Emblem" type="MeshInstance3D" parent="JudgeArea" unique_id=449538130]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 3.3, -10.72)
+mesh = SubResource("mesh_emblem")
+
+[node name="BannerItGreen" type="MeshInstance3D" parent="JudgeArea" unique_id=1459681601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.4, -10.7)
+mesh = SubResource("mesh_banner_stripe")
+surface_material_override/0 = SubResource("mat_flag_green")
+
+[node name="BannerItWhite" type="MeshInstance3D" parent="JudgeArea" unique_id=1652169038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 2.4, -10.7)
+mesh = SubResource("mesh_banner_stripe")
+surface_material_override/0 = SubResource("mat_flag_white")
+
+[node name="BannerItRed" type="MeshInstance3D" parent="JudgeArea" unique_id=116710580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 2.4, -10.7)
+mesh = SubResource("mesh_banner_stripe")
+surface_material_override/0 = SubResource("mat_flag_red")
+
+[node name="BannerEu" type="MeshInstance3D" parent="JudgeArea" unique_id=281881507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 2.4, -10.7)
+mesh = SubResource("mesh_banner_eu")
+
+[node name="FlagItalyPole" type="MeshInstance3D" parent="JudgeArea" unique_id=1415842909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3, 1.7, -10.3)
+mesh = SubResource("mesh_flagpole")
+
+[node name="FlagItalyGreen" type="MeshInstance3D" parent="JudgeArea" unique_id=1665738501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3, 2.45, -10.1)
+mesh = SubResource("mesh_flag_stripe")
+surface_material_override/0 = SubResource("mat_flag_green")
+
+[node name="FlagItalyWhite" type="MeshInstance3D" parent="JudgeArea" unique_id=615327818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3, 2.45, -9.9)
+mesh = SubResource("mesh_flag_stripe")
+surface_material_override/0 = SubResource("mat_flag_white")
+
+[node name="FlagItalyRed" type="MeshInstance3D" parent="JudgeArea" unique_id=274627423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3, 2.45, -9.7)
+mesh = SubResource("mesh_flag_stripe")
+surface_material_override/0 = SubResource("mat_flag_red")
+
+[node name="FlagEuPole" type="MeshInstance3D" parent="JudgeArea" unique_id=1851256047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 1.7, -10.3)
+mesh = SubResource("mesh_flagpole")
+
+[node name="FlagEuCloth" type="MeshInstance3D" parent="JudgeArea" unique_id=80571787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 2.45, -9.96)
+mesh = SubResource("mesh_flag_eu")
+
+[node name="GavelHead" type="MeshInstance3D" parent="JudgeArea" unique_id=1167292038]
+transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0.8, 2.42, -8.8)
+mesh = SubResource("mesh_gavel_head")
+
+[node name="GavelBlock" type="MeshInstance3D" parent="JudgeArea" unique_id=1280864456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 2.38, -8.8)
+mesh = SubResource("mesh_gavel_block")
+
+[node name="LampJudgeBase" type="MeshInstance3D" parent="JudgeArea" unique_id=678462775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 2.365, -8.8)
+mesh = SubResource("mesh_lamp_base")
+
+[node name="LampJudgeStem" type="MeshInstance3D" parent="JudgeArea" unique_id=710043689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 2.55, -8.8)
+mesh = SubResource("mesh_lamp_stem")
+
+[node name="LampJudgeShade" type="MeshInstance3D" parent="JudgeArea" unique_id=1017884095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 2.73, -8.8)
+mesh = SubResource("mesh_lamp_shade")
+
+[node name="PaperJudge" type="MeshInstance3D" parent="JudgeArea" unique_id=1944621047]
+transform = Transform3D(0.985, 0, 0.174, 0, 1, 0, -0.174, 0, 0.985, -0.3, 2.365, -8.8)
+mesh = SubResource("mesh_paper")
+
+[node name="JudgeChair" parent="JudgeArea" unique_id=2108999470 instance=ExtResource("1_chair")]
+transform = Transform3D(-1.25, 0, 0, 0, 1.25, 0, 0, 0, -1.25, 0, 0.7, -9.35)
+
+[node name="WitnessStand" type="Node3D" parent="." unique_id=970901450]
+
+[node name="Platform" type="MeshInstance3D" parent="WitnessStand" unique_id=1638420192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 0.175, -7.7)
+mesh = SubResource("mesh_witness_platform")
+
+[node name="FrontPanel" type="MeshInstance3D" parent="WitnessStand" unique_id=359676256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 0.925, -6.68)
+mesh = SubResource("mesh_witness_front")
+
+[node name="SideLeft" type="MeshInstance3D" parent="WitnessStand" unique_id=473305737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.85, 0.925, -7.4)
+mesh = SubResource("mesh_witness_side")
+
+[node name="SideRight" type="MeshInstance3D" parent="WitnessStand" unique_id=739812732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95, 0.925, -7.4)
+mesh = SubResource("mesh_witness_side")
+
+[node name="WitnessChair" parent="WitnessStand" unique_id=2017368002 instance=ExtResource("1_chair")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -4.9, 0.35, -7.9)
+
+[node name="ClerkDesk" type="Node3D" parent="." unique_id=2140403072]
+
+[node name="Desk" parent="ClerkDesk" unique_id=1632946513 instance=ExtResource("3_table")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 2.6, 0, -6.8)
+
+[node name="ClerkChair" parent="ClerkDesk" unique_id=2113567671 instance=ExtResource("1_chair")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 2.6, 0, -7.55)
+
+[node name="Book1" type="MeshInstance3D" parent="ClerkDesk" unique_id=1471590517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 0.813, -6.95)
+mesh = SubResource("mesh_book")
+surface_material_override/0 = SubResource("mat_drape")
+
+[node name="Book2" type="MeshInstance3D" parent="ClerkDesk" unique_id=711504277]
+transform = Transform3D(0.978, 0, 0.208, 0, 1, 0, -0.208, 0, 0.978, 2.21, 0.868, -6.93)
+mesh = SubResource("mesh_book")
+surface_material_override/0 = SubResource("mat_flag_blue")
+
+[node name="PaperClerk" type="MeshInstance3D" parent="ClerkDesk" unique_id=1880720430]
+transform = Transform3D(0.99, 0, -0.139, 0, 1, 0, 0.139, 0, 0.99, 2.9, 0.792, -6.7)
+mesh = SubResource("mesh_paper")
+
+[node name="JuryBox" type="Node3D" parent="." unique_id=1337601636]
+
+[node name="Tier1" type="MeshInstance3D" parent="JuryBox" unique_id=1033911516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 0.15, -2)
+mesh = SubResource("mesh_jury_tier1")
+
+[node name="Tier2" type="MeshInstance3D" parent="JuryBox" unique_id=2084827215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35, 0.45, -2)
+mesh = SubResource("mesh_jury_tier2")
+
+[node name="RailPanel" type="MeshInstance3D" parent="JuryBox" unique_id=2094539613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.37, 0.75, -2)
+mesh = SubResource("mesh_jury_panel")
+
+[node name="RailTop" type="MeshInstance3D" parent="JuryBox" unique_id=1088779285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.37, 1.23, -2)
+mesh = SubResource("mesh_jury_top")
+
+[node name="JuryChairA1" parent="JuryBox" unique_id=551075380 instance=ExtResource("1_chair")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -6.2, 0.3, -4.7)
+
+[node name="JuryChairA2" parent="JuryBox" unique_id=497498275 instance=ExtResource("1_chair")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -6.2, 0.3, -2.9)
+
+[node name="JuryChairA3" parent="JuryBox" unique_id=84497663 instance=ExtResource("1_chair")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -6.2, 0.3, -1.1)
+
+[node name="JuryChairA4" parent="JuryBox" unique_id=1856722841 instance=ExtResource("1_chair")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -6.2, 0.3, 0.7)
+
+[node name="JuryChairB1" parent="JuryBox" unique_id=349746570 instance=ExtResource("1_chair")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -7.35, 0.6, -4.7)
+
+[node name="JuryChairB2" parent="JuryBox" unique_id=1659645240 instance=ExtResource("1_chair")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -7.35, 0.6, -2.9)
+
+[node name="JuryChairB3" parent="JuryBox" unique_id=1175131244 instance=ExtResource("1_chair")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -7.35, 0.6, -1.1)
+
+[node name="JuryChairB4" parent="JuryBox" unique_id=276100002 instance=ExtResource("1_chair")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -7.35, 0.6, 0.7)
+
+[node name="CounselArea" type="Node3D" parent="." unique_id=1123332689]
+
+[node name="DefenseTable" parent="CounselArea" unique_id=674639612 instance=ExtResource("3_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -4.6)
+
+[node name="ProsecutionTable" parent="CounselArea" unique_id=1400695469 instance=ExtResource("3_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -4.6)
+
+[node name="DefenseChair1" parent="CounselArea" unique_id=1427510274 instance=ExtResource("1_chair")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.55, 0, -3.75)
+
+[node name="DefenseChair2" parent="CounselArea" unique_id=1824818553 instance=ExtResource("1_chair")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.45, 0, -3.75)
+
+[node name="ProsecutionChair1" parent="CounselArea" unique_id=98804932 instance=ExtResource("1_chair")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45, 0, -3.75)
+
+[node name="ProsecutionChair2" parent="CounselArea" unique_id=507966938 instance=ExtResource("1_chair")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.55, 0, -3.75)
+
+[node name="LampDefBase" type="MeshInstance3D" parent="CounselArea" unique_id=1610656660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.81, -4.8)
+mesh = SubResource("mesh_lamp_base")
+
+[node name="LampDefStem" type="MeshInstance3D" parent="CounselArea" unique_id=795379893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.99, -4.8)
+mesh = SubResource("mesh_lamp_stem")
+
+[node name="LampDefShade" type="MeshInstance3D" parent="CounselArea" unique_id=2073996105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1.17, -4.8)
+mesh = SubResource("mesh_lamp_shade")
+
+[node name="LampProBase" type="MeshInstance3D" parent="CounselArea" unique_id=530511048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.81, -4.8)
+mesh = SubResource("mesh_lamp_base")
+
+[node name="LampProStem" type="MeshInstance3D" parent="CounselArea" unique_id=1822229294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.99, -4.8)
+mesh = SubResource("mesh_lamp_stem")
+
+[node name="LampProShade" type="MeshInstance3D" parent="CounselArea" unique_id=1479963666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1.17, -4.8)
+mesh = SubResource("mesh_lamp_shade")
+
+[node name="PaperDef" type="MeshInstance3D" parent="CounselArea" unique_id=669217304]
+transform = Transform3D(0.966, 0, 0.259, 0, 1, 0, -0.259, 0, 0.966, -2.7, 0.792, -4.5)
+mesh = SubResource("mesh_paper")
+
+[node name="PaperPro" type="MeshInstance3D" parent="CounselArea" unique_id=1253676776]
+transform = Transform3D(0.94, 0, -0.342, 0, 1, 0, 0.342, 0, 0.94, 2.7, 0.792, -4.55)
+mesh = SubResource("mesh_paper")
+
+[node name="LecternBase" type="MeshInstance3D" parent="CounselArea" unique_id=438524305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56, -3.2)
+mesh = SubResource("mesh_lectern_base")
+
+[node name="LecternTop" type="MeshInstance3D" parent="CounselArea" unique_id=1711771422]
+transform = Transform3D(1, 0, 0, 0, 0.966, 0.259, 0, -0.259, 0.966, 0, 1.16, -3.2)
+mesh = SubResource("mesh_lectern_top")
+
+[node name="BarRailing" type="Node3D" parent="." unique_id=159388153]
+
+[node name="RailTopLeft" type="MeshInstance3D" parent="BarRailing" unique_id=638881523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35, 1.02, 0.2)
+mesh = SubResource("mesh_rail_top")
+
+[node name="RailTopRight" type="MeshInstance3D" parent="BarRailing" unique_id=1710961093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.35, 1.02, 0.2)
+mesh = SubResource("mesh_rail_top")
+
+[node name="RailMidLeft" type="MeshInstance3D" parent="BarRailing" unique_id=1524939221]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35, 0.6, 0.2)
+mesh = SubResource("mesh_rail_mid")
+
+[node name="RailMidRight" type="MeshInstance3D" parent="BarRailing" unique_id=681612001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.35, 0.6, 0.2)
+mesh = SubResource("mesh_rail_mid")
+
+[node name="Post1" type="MeshInstance3D" parent="BarRailing" unique_id=991946435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85, 0.5, 0.2)
+mesh = SubResource("mesh_rail_post")
+
+[node name="Post2" type="MeshInstance3D" parent="BarRailing" unique_id=1129359628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35, 0.5, 0.2)
+mesh = SubResource("mesh_rail_post")
+
+[node name="Post3" type="MeshInstance3D" parent="BarRailing" unique_id=541851315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 0.5, 0.2)
+mesh = SubResource("mesh_rail_post")
+
+[node name="Post4" type="MeshInstance3D" parent="BarRailing" unique_id=657366022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85, 0.5, 0.2)
+mesh = SubResource("mesh_rail_post")
+
+[node name="Post5" type="MeshInstance3D" parent="BarRailing" unique_id=1886842012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.35, 0.5, 0.2)
+mesh = SubResource("mesh_rail_post")
+
+[node name="Post6" type="MeshInstance3D" parent="BarRailing" unique_id=26668580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.85, 0.5, 0.2)
+mesh = SubResource("mesh_rail_post")
+
+[node name="Gallery" type="Node3D" parent="." unique_id=228858417]
+
+[node name="BenchL1" parent="Gallery" unique_id=773821080 instance=ExtResource("2_bench")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9, 0, 2.3)
+
+[node name="BenchL2" parent="Gallery" unique_id=1389360710 instance=ExtResource("2_bench")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9, 0, 4.3)
+
+[node name="BenchL3" parent="Gallery" unique_id=1400318457 instance=ExtResource("2_bench")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9, 0, 6.3)
+
+[node name="BenchL4" parent="Gallery" unique_id=665485402 instance=ExtResource("2_bench")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9, 0, 8.3)
+
+[node name="BenchR1" parent="Gallery" unique_id=1796639484 instance=ExtResource("2_bench")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 0, 2.3)
+
+[node name="BenchR2" parent="Gallery" unique_id=1534729723 instance=ExtResource("2_bench")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 0, 4.3)
+
+[node name="BenchR3" parent="Gallery" unique_id=995883611 instance=ExtResource("2_bench")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 0, 6.3)
+
+[node name="BenchR4" parent="Gallery" unique_id=2048684659 instance=ExtResource("2_bench")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 0, 8.3)
+
+[node name="Entrance" type="Node3D" parent="." unique_id=597434597]
+
+[node name="DoorLeft" type="MeshInstance3D" parent="Entrance" unique_id=1862046745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63, 1.35, 10.93)
+mesh = SubResource("mesh_door_panel")
+
+[node name="DoorRight" type="MeshInstance3D" parent="Entrance" unique_id=1454759098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.63, 1.35, 10.93)
+mesh = SubResource("mesh_door_panel")
+
+[node name="HandleLeft" type="MeshInstance3D" parent="Entrance" unique_id=1955541398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 1.35, 10.83)
+mesh = SubResource("mesh_handle")
+
+[node name="HandleRight" type="MeshInstance3D" parent="Entrance" unique_id=1454881351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 1.35, 10.83)
+mesh = SubResource("mesh_handle")
+
+[node name="FrameTop" type="MeshInstance3D" parent="Entrance" unique_id=311195381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.79, 10.9)
+mesh = SubResource("mesh_door_top")
+
+[node name="JambLeft" type="MeshInstance3D" parent="Entrance" unique_id=282087105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, 1.35, 10.9)
+mesh = SubResource("mesh_door_jamb")
+
+[node name="JambRight" type="MeshInstance3D" parent="Entrance" unique_id=879022010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 1.35, 10.9)
+mesh = SubResource("mesh_door_jamb")
+
+[node name="ClockFace" type="MeshInstance3D" parent="Entrance" unique_id=1253443047]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 3.85, 10.92)
+mesh = SubResource("mesh_clock_face")
+
+[node name="ClockRim" type="MeshInstance3D" parent="Entrance" unique_id=1872939175]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 3.85, 10.92)
+mesh = SubResource("mesh_clock_rim")
+
+[node name="HandHour" type="MeshInstance3D" parent="Entrance" unique_id=506873159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.94, 10.86)
+mesh = SubResource("mesh_hand_hour")
+
+[node name="HandMin" type="MeshInstance3D" parent="Entrance" unique_id=968189835]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0.12, 3.85, 10.86)
+mesh = SubResource("mesh_hand_min")
+
+[node name="Windows" type="Node3D" parent="." unique_id=1334394881]
+
+[node name="WinFrameE1" type="MeshInstance3D" parent="Windows" unique_id=1746049023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98, 2.9, -6)
+mesh = SubResource("mesh_win_frame")
+
+[node name="WinGlassE1" type="MeshInstance3D" parent="Windows" unique_id=78638161]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.84, 2.9, -6)
+mesh = SubResource("mesh_win_glass")
+
+[node name="WinFrameE2" type="MeshInstance3D" parent="Windows" unique_id=1385690909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98, 2.9, -1)
+mesh = SubResource("mesh_win_frame")
+
+[node name="WinGlassE2" type="MeshInstance3D" parent="Windows" unique_id=432400852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.84, 2.9, -1)
+mesh = SubResource("mesh_win_glass")
+
+[node name="WinFrameE3" type="MeshInstance3D" parent="Windows" unique_id=920758132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98, 2.9, 4)
+mesh = SubResource("mesh_win_frame")
+
+[node name="WinGlassE3" type="MeshInstance3D" parent="Windows" unique_id=221378324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.84, 2.9, 4)
+mesh = SubResource("mesh_win_glass")
+
+[node name="WinFrameW1" type="MeshInstance3D" parent="Windows" unique_id=578883260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.98, 2.9, -6)
+mesh = SubResource("mesh_win_frame")
+
+[node name="WinGlassW1" type="MeshInstance3D" parent="Windows" unique_id=581242729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84, 2.9, -6)
+mesh = SubResource("mesh_win_glass")
+
+[node name="WinFrameW2" type="MeshInstance3D" parent="Windows" unique_id=154029266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.98, 2.9, -1)
+mesh = SubResource("mesh_win_frame")
+
+[node name="WinGlassW2" type="MeshInstance3D" parent="Windows" unique_id=294188304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84, 2.9, -1)
+mesh = SubResource("mesh_win_glass")
+
+[node name="WinFrameW3" type="MeshInstance3D" parent="Windows" unique_id=887652102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.98, 2.9, 4)
+mesh = SubResource("mesh_win_frame")
+
+[node name="WinGlassW3" type="MeshInstance3D" parent="Windows" unique_id=1626460981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84, 2.9, 4)
+mesh = SubResource("mesh_win_glass")
+
+[node name="DrapeE1L" type="MeshInstance3D" parent="Windows" unique_id=1132654216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83, 2.75, -7.05)
+mesh = SubResource("mesh_drape")
+
+[node name="DrapeE1R" type="MeshInstance3D" parent="Windows" unique_id=782708951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83, 2.75, -4.95)
+mesh = SubResource("mesh_drape")
+
+[node name="PelmetE1" type="MeshInstance3D" parent="Windows" unique_id=484082737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.84, 4.18, -6)
+mesh = SubResource("mesh_pelmet")
+
+[node name="DrapeE2L" type="MeshInstance3D" parent="Windows" unique_id=556411081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83, 2.75, -2.05)
+mesh = SubResource("mesh_drape")
+
+[node name="DrapeE2R" type="MeshInstance3D" parent="Windows" unique_id=570563608]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83, 2.75, 0.05)
+mesh = SubResource("mesh_drape")
+
+[node name="PelmetE2" type="MeshInstance3D" parent="Windows" unique_id=1881876911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.84, 4.18, -1)
+mesh = SubResource("mesh_pelmet")
+
+[node name="DrapeE3L" type="MeshInstance3D" parent="Windows" unique_id=373605226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83, 2.75, 2.95)
+mesh = SubResource("mesh_drape")
+
+[node name="DrapeE3R" type="MeshInstance3D" parent="Windows" unique_id=930970004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83, 2.75, 5.05)
+mesh = SubResource("mesh_drape")
+
+[node name="PelmetE3" type="MeshInstance3D" parent="Windows" unique_id=264992154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.84, 4.18, 4)
+mesh = SubResource("mesh_pelmet")
+
+[node name="DrapeW1L" type="MeshInstance3D" parent="Windows" unique_id=166716733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.83, 2.75, -7.05)
+mesh = SubResource("mesh_drape")
+
+[node name="DrapeW1R" type="MeshInstance3D" parent="Windows" unique_id=1410374639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.83, 2.75, -4.95)
+mesh = SubResource("mesh_drape")
+
+[node name="PelmetW1" type="MeshInstance3D" parent="Windows" unique_id=443957547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84, 4.18, -6)
+mesh = SubResource("mesh_pelmet")
+
+[node name="DrapeW2L" type="MeshInstance3D" parent="Windows" unique_id=604440187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.83, 2.75, -2.05)
+mesh = SubResource("mesh_drape")
+
+[node name="DrapeW2R" type="MeshInstance3D" parent="Windows" unique_id=1650583920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.83, 2.75, 0.05)
+mesh = SubResource("mesh_drape")
+
+[node name="PelmetW2" type="MeshInstance3D" parent="Windows" unique_id=1270497331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84, 4.18, -1)
+mesh = SubResource("mesh_pelmet")
+
+[node name="DrapeW3L" type="MeshInstance3D" parent="Windows" unique_id=2107516315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.83, 2.75, 2.95)
+mesh = SubResource("mesh_drape")
+
+[node name="DrapeW3R" type="MeshInstance3D" parent="Windows" unique_id=167508947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.83, 2.75, 5.05)
+mesh = SubResource("mesh_drape")
+
+[node name="PelmetW3" type="MeshInstance3D" parent="Windows" unique_id=696428697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.84, 4.18, 4)
+mesh = SubResource("mesh_pelmet")
+
+[node name="Lights" type="Node3D" parent="." unique_id=762379028]
+
+[node name="Rod1" type="MeshInstance3D" parent="Lights" unique_id=111917381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 4.6, -7.5)
+mesh = SubResource("mesh_pendant_rod")
+
+[node name="Shade1" type="MeshInstance3D" parent="Lights" unique_id=2136515630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 4.05, -7.5)
+mesh = SubResource("mesh_pendant_shade")
+
+[node name="Bulb1" type="MeshInstance3D" parent="Lights" unique_id=1329844809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 3.93, -7.5)
+mesh = SubResource("mesh_pendant_bulb")
+
+[node name="Rod2" type="MeshInstance3D" parent="Lights" unique_id=409744407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 4.6, -7.5)
+mesh = SubResource("mesh_pendant_rod")
+
+[node name="Shade2" type="MeshInstance3D" parent="Lights" unique_id=188592641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 4.05, -7.5)
+mesh = SubResource("mesh_pendant_shade")
+
+[node name="Bulb2" type="MeshInstance3D" parent="Lights" unique_id=1796039010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 3.93, -7.5)
+mesh = SubResource("mesh_pendant_bulb")
+
+[node name="Rod3" type="MeshInstance3D" parent="Lights" unique_id=902473209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 4.6, -2.5)
+mesh = SubResource("mesh_pendant_rod")
+
+[node name="Shade3" type="MeshInstance3D" parent="Lights" unique_id=1863800099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 4.05, -2.5)
+mesh = SubResource("mesh_pendant_shade")
+
+[node name="Bulb3" type="MeshInstance3D" parent="Lights" unique_id=1356613079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 3.93, -2.5)
+mesh = SubResource("mesh_pendant_bulb")
+
+[node name="Rod4" type="MeshInstance3D" parent="Lights" unique_id=1003765600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 4.6, -2.5)
+mesh = SubResource("mesh_pendant_rod")
+
+[node name="Shade4" type="MeshInstance3D" parent="Lights" unique_id=1391947288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 4.05, -2.5)
+mesh = SubResource("mesh_pendant_shade")
+
+[node name="Bulb4" type="MeshInstance3D" parent="Lights" unique_id=2031747891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 3.93, -2.5)
+mesh = SubResource("mesh_pendant_bulb")
+
+[node name="Rod5" type="MeshInstance3D" parent="Lights" unique_id=1164869354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 4.6, 2.5)
+mesh = SubResource("mesh_pendant_rod")
+
+[node name="Shade5" type="MeshInstance3D" parent="Lights" unique_id=1582264106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 4.05, 2.5)
+mesh = SubResource("mesh_pendant_shade")
+
+[node name="Bulb5" type="MeshInstance3D" parent="Lights" unique_id=380029699]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 3.93, 2.5)
+mesh = SubResource("mesh_pendant_bulb")
+
+[node name="Rod6" type="MeshInstance3D" parent="Lights" unique_id=68399001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 4.6, 2.5)
+mesh = SubResource("mesh_pendant_rod")
+
+[node name="Shade6" type="MeshInstance3D" parent="Lights" unique_id=2107496851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 4.05, 2.5)
+mesh = SubResource("mesh_pendant_shade")
+
+[node name="Bulb6" type="MeshInstance3D" parent="Lights" unique_id=955839219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 3.93, 2.5)
+mesh = SubResource("mesh_pendant_bulb")
+
+[node name="Rod7" type="MeshInstance3D" parent="Lights" unique_id=1491630372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 4.6, 7.5)
+mesh = SubResource("mesh_pendant_rod")
+
+[node name="Shade7" type="MeshInstance3D" parent="Lights" unique_id=2061410543]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 4.05, 7.5)
+mesh = SubResource("mesh_pendant_shade")
+
+[node name="Bulb7" type="MeshInstance3D" parent="Lights" unique_id=28709529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 3.93, 7.5)
+mesh = SubResource("mesh_pendant_bulb")
+
+[node name="Rod8" type="MeshInstance3D" parent="Lights" unique_id=1042715426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 4.6, 7.5)
+mesh = SubResource("mesh_pendant_rod")
+
+[node name="Shade8" type="MeshInstance3D" parent="Lights" unique_id=1173764030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 4.05, 7.5)
+mesh = SubResource("mesh_pendant_shade")
+
+[node name="Bulb8" type="MeshInstance3D" parent="Lights" unique_id=803029350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 3.93, 7.5)
+mesh = SubResource("mesh_pendant_bulb")
+
+[node name="Omni1" type="OmniLight3D" parent="Lights" unique_id=1471065267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 3.8, -7.5)
+light_color = Color(1, 0.92, 0.8, 1)
+light_energy = 1.3
+omni_range = 8.5
+
+[node name="Omni2" type="OmniLight3D" parent="Lights" unique_id=1365943258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 3.8, -7.5)
+light_color = Color(1, 0.92, 0.8, 1)
+light_energy = 1.3
+omni_range = 8.5
+
+[node name="Omni3" type="OmniLight3D" parent="Lights" unique_id=1231028325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 3.8, -2.5)
+light_color = Color(1, 0.92, 0.8, 1)
+light_energy = 1.3
+omni_range = 8.5
+
+[node name="Omni4" type="OmniLight3D" parent="Lights" unique_id=1966289491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 3.8, -2.5)
+light_color = Color(1, 0.92, 0.8, 1)
+light_energy = 1.3
+omni_range = 8.5
+
+[node name="Omni5" type="OmniLight3D" parent="Lights" unique_id=1639239023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 3.8, 2.5)
+light_color = Color(1, 0.92, 0.8, 1)
+light_energy = 1.3
+omni_range = 8.5
+
+[node name="Omni6" type="OmniLight3D" parent="Lights" unique_id=7425134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 3.8, 2.5)
+light_color = Color(1, 0.92, 0.8, 1)
+light_energy = 1.3
+omni_range = 8.5
+
+[node name="Omni7" type="OmniLight3D" parent="Lights" unique_id=1866301355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 3.8, 7.5)
+light_color = Color(1, 0.92, 0.8, 1)
+light_energy = 1.3
+omni_range = 8.5
+
+[node name="Omni8" type="OmniLight3D" parent="Lights" unique_id=1681688993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4, 3.8, 7.5)
+light_color = Color(1, 0.92, 0.8, 1)
+light_energy = 1.3
+omni_range = 8.5
+
+[node name="SpotJudgeL" type="SpotLight3D" parent="Lights" unique_id=331632240]
+transform = Transform3D(1, 0, 0, 0, 0.707, 0.707, 0, -0.707, 0.707, -2.2, 4.85, -6)
+light_color = Color(1, 0.94, 0.85, 1)
+light_energy = 5.0
+spot_range = 9.0
+spot_angle = 30.0
+
+[node name="SpotJudgeR" type="SpotLight3D" parent="Lights" unique_id=641020339]
+transform = Transform3D(1, 0, 0, 0, 0.707, 0.707, 0, -0.707, 0.707, 2.2, 4.85, -6)
+light_color = Color(1, 0.94, 0.85, 1)
+light_energy = 5.0
+spot_range = 9.0
+spot_angle = 30.0
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=1753724457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+size = Vector3(16.4, 5.2, 22.4)
+
+[node name="Collisions" type="StaticBody3D" parent="." unique_id=186525878]
+
+[node name="CS_Floor" type="CollisionShape3D" parent="Collisions" unique_id=1996626124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+shape = SubResource("shape_floor")
+
+[node name="CS_Ceiling" type="CollisionShape3D" parent="Collisions" unique_id=1166586655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.1, 0)
+shape = SubResource("shape_floor")
+
+[node name="CS_WallEast" type="CollisionShape3D" parent="Collisions" unique_id=1599785322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15, 2.5, 0)
+shape = SubResource("shape_wall_side")
+
+[node name="CS_WallWest" type="CollisionShape3D" parent="Collisions" unique_id=26147832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.15, 2.5, 0)
+shape = SubResource("shape_wall_side")
+
+[node name="CS_WallFront" type="CollisionShape3D" parent="Collisions" unique_id=882427390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -11.15)
+shape = SubResource("shape_wall_end")
+
+[node name="CS_WallBack" type="CollisionShape3D" parent="Collisions" unique_id=1632359876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 11.15)
+shape = SubResource("shape_wall_end")
+
+[node name="CS_JudgeTier1" type="CollisionShape3D" parent="Collisions" unique_id=524088995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, -9.2)
+shape = SubResource("shape_judge_tier1")
+
+[node name="CS_JudgeTier2" type="CollisionShape3D" parent="Collisions" unique_id=1193741008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525, -9.4)
+shape = SubResource("shape_judge_tier2")
+
+[node name="CS_GradinoGiudice" type="CollisionShape3D" parent="Collisions" unique_id=892290933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.225, -9.975)
+shape = SubResource("shape_gradino_giudice")
+
+[node name="CS_Bench" type="CollisionShape3D" parent="Collisions" unique_id=1737436050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, -8.75)
+shape = SubResource("shape_bench")
+
+[node name="CS_JuryTier1" type="CollisionShape3D" parent="Collisions" unique_id=321125178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 0.15, -2)
+shape = SubResource("shape_jury_tier1")
+
+[node name="CS_JuryTier2" type="CollisionShape3D" parent="Collisions" unique_id=1604104429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35, 0.45, -2)
+shape = SubResource("shape_jury_tier2")
+
+[node name="CS_RailLeft" type="CollisionShape3D" parent="Collisions" unique_id=1424038387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35, 0.55, 0.2)
+shape = SubResource("shape_rail")
+
+[node name="CS_RailRight" type="CollisionShape3D" parent="Collisions" unique_id=1933854855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.35, 0.55, 0.2)
+shape = SubResource("shape_rail")
+
+[node name="CS_Witness" type="CollisionShape3D" parent="Collisions" unique_id=1052771724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 0.175, -7.7)
+shape = SubResource("shape_witness")
+
+[node name="CS_Lectern" type="CollisionShape3D" parent="Collisions" unique_id=319656711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -3.2)
+shape = SubResource("shape_lectern")
+
+[node name="ZonaBancoDifesa" type="Area3D" parent="." unique_id=540897332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3.3)
+script = ExtResource("99_bancodif")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZonaBancoDifesa" unique_id=1852690162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("shape_zona_banco")
+
+[node name="UIBanco" type="CanvasLayer" parent="ZonaBancoDifesa" unique_id=1457576983]
+visible = false
+
+[node name="Label" type="Label" parent="ZonaBancoDifesa/UIBanco" unique_id=1662978315]
+offset_left = 352.0
+offset_top = 521.0
+offset_right = 1000.0
+offset_bottom = 585.0
+text = "[Premi Q per  aprire l'udienza]"
+label_settings = SubResource("stile_avviso_aula")
+
+[node name="Markers" type="Node3D" parent="." unique_id=1469968201]
+
+[node name="banco_giudice" type="Marker3D" parent="Markers" unique_id=558918122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.9)
+
+[node name="banco_testimone" type="Marker3D" parent="Markers" unique_id=2072184495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 0, -6.1)
+
+[node name="banco_cancelliere" type="Marker3D" parent="Markers" unique_id=1405737429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6, 0, -6.2)
+
+[node name="banco_difesa" type="Marker3D" parent="Markers" unique_id=782336989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3.5)
+
+[node name="banco_accusa" type="Marker3D" parent="Markers" unique_id=862738800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3.5)
+
+[node name="podio" type="Marker3D" parent="Markers" unique_id=777468313]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+
+[node name="giuria" type="Marker3D" parent="Markers" unique_id=866795843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 0, -2)
+
+[node name="pubblico" type="Marker3D" parent="Markers" unique_id=1961924555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.4)
+
+[node name="ingresso_tribunale" type="Marker3D" parent="Markers" unique_id=1443714755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.2)
+
+[node name="TribunaleRegions" type="Node3D" parent="." unique_id=878559565]
+
+[node name="aula_tribunale" type="Area3D" parent="TribunaleRegions" unique_id=61010397]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TribunaleRegions/aula_tribunale" unique_id=1776858832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("shape_region")
+
+[node name="TribunaleEnvironment" type="WorldEnvironment" parent="." unique_id=765983740]
+environment = SubResource("env_tribunale")
+
+[node name="TribunaleSpawn" type="Marker3D" parent="." unique_id=1500015095]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 9.3)
+
+[node name="Giudice" parent="." unique_id=662697605 instance=ExtResource("90_agente")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 1.75, -9.8)
+PORT = 9086
+
+[node name="Procuratore" parent="." unique_id=1139644482 instance=ExtResource("90_agente")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 2, 0, -4.6)
+PORT = 9087
+
+[node name="Difesa" parent="." unique_id=380891616 instance=ExtResource("90_agente")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4.6)
+visible = false
+collision_layer = 0
+PORT = 9088
+
+[connection signal="body_entered" from="ZonaBancoDifesa" to="ZonaBancoDifesa" method="_on_body_entered"]
+[connection signal="body_exited" from="ZonaBancoDifesa" to="ZonaBancoDifesa" method="_on_body_exited"]
+
+[node name="characterMedium" parent="Giudice/Body/Root/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("mat_giudice")
+
+[node name="characterMedium" parent="Procuratore/Body/Root/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("mat_procuratore")

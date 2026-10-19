@@ -1,0 +1,83 @@
+mas vesna {
+
+    agent bob:bob.asl {
+        beliefs:    address( localhost )
+                    port( 9080 )
+        goals:      start
+        ag-class:   vesna.VesnaAgent
+        join:       wp
+    }
+
+    agent sullivan:sullivan.asl {
+        beliefs:    address( localhost )
+                    port( 9081 )
+        goals:      start
+        ag-class:   vesna.VesnaAgent
+        join:       wp
+    }
+
+    agent alex:alex.asl {
+        beliefs:    address( localhost )
+                    port( 9082 )
+        goals:      start
+        ag-class:   vesna.VesnaAgent
+        join:       wp
+    }
+
+    agent jefferson:jefferson.asl {
+        beliefs:    address( localhost )
+                    port( 9083 )
+        goals:      start
+        ag-class:   vesna.VesnaAgent
+        join:       wp
+    }
+
+    agent chloe:chloe.asl {
+        beliefs:    address( localhost )
+                    port( 9084 )
+        goals:      start
+        ag-class:   vesna.VesnaAgent
+        join:       wp
+    }
+
+    agent finn:finn.asl {
+        beliefs:    address( localhost )
+                    port( 9085 )
+        goals:      start
+        ag-class:   vesna.VesnaAgent
+        join:       wp
+    }
+
+    // ---- ATTO 3: gli agenti dell'aula ----
+    // giudice = Auction Host (arbitro) e procuratore/difesa = Auction
+    // Participant, secondo i ruoli del GNP di Muscar et al. 2012.
+    // Vedi docs/diario_sviluppo.md §35.
+    agent giudice:giudice.asl {
+        beliefs:    address( localhost )
+                    port( 9086 )
+        goals:      start
+        ag-class:   vesna.VesnaAgent
+        join:       wp
+    }
+
+    agent procuratore:procuratore.asl {
+        beliefs:    address( localhost )
+                    port( 9087 )
+        goals:      start
+        ag-class:   vesna.VesnaAgent
+        join:       wp
+    }
+
+    agent difesa:difesa.asl {
+        beliefs:    address( localhost )
+                    port( 9088 )
+        goals:      start
+        ag-class:   vesna.VesnaAgent
+        join:       wp
+    }
+
+    workspace wp {
+        artifact radio: vesna.playgrounds.home.Radio( "ripostiglio", 1 )
+    }
+
+}
