@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b7bhdx4qqsm6l"
+path="res://.godot/imported/bowl_small.obj-75cb5514b1ed1be3a3111c914adf9826.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bowl_small.obj-75cb5514b1ed1be3a3111c914adf9826.mesh"]
+
+source_file="res://assets/restaurant/obj/bowl_small.obj"
+dest_files=["res://.godot/imported/bowl_small.obj-75cb5514b1ed1be3a3111c914adf9826.mesh", "res://.godot/imported/bowl_small.obj-75cb5514b1ed1be3a3111c914adf9826.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d0fur3xxpn8e1"
+path="res://.godot/imported/lamp_table.obj-bb1b0e0dfe4d57232f459f0d53817bb4.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lamp_table.obj-bb1b0e0dfe4d57232f459f0d53817bb4.mesh"]
+
+source_file="res://assets/furniture/obj/lamp_table.obj"
+dest_files=["res://.godot/imported/lamp_table.obj-bb1b0e0dfe4d57232f459f0d53817bb4.mesh", "res://.godot/imported/lamp_table.obj-bb1b0e0dfe4d57232f459f0d53817bb4.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

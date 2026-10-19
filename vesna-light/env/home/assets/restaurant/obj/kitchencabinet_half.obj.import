@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bi0bctjb5vr5i"
+path="res://.godot/imported/kitchencabinet_half.obj-cf5a550f4070b75a90d1d980987f1ede.mesh"
+
+[deps]
+
+files=["res://.godot/imported/kitchencabinet_half.obj-cf5a550f4070b75a90d1d980987f1ede.mesh"]
+
+source_file="res://assets/restaurant/obj/kitchencabinet_half.obj"
+dest_files=["res://.godot/imported/kitchencabinet_half.obj-cf5a550f4070b75a90d1d980987f1ede.mesh", "res://.godot/imported/kitchencabinet_half.obj-cf5a550f4070b75a90d1d980987f1ede.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

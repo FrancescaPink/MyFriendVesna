@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctbl59kfa2mnr"]
+
+[sub_resource type="FastNoiseLite" id="noise_wood"]
+noise_type = 3
+frequency = 0.02
+fractal_octaves = 4
+
+[sub_resource type="Gradient" id="grad_wood"]
+offsets = PackedFloat32Array(0, 0.45, 0.75, 1)
+colors = PackedColorArray(0.2, 0.12, 0.07, 1, 0.28, 0.17, 0.1, 1, 0.33, 0.21, 0.12, 1, 0.4, 0.27, 0.15, 1)
+
+[sub_resource type="NoiseTexture2D" id="tex_wood"]
+seamless = true
+color_ramp = SubResource("grad_wood")
+noise = SubResource("noise_wood")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wood"]
+albedo_texture = SubResource("tex_wood")
+roughness = 0.45
+uv1_scale = Vector3(1.4, 1.4, 1.4)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_top"]
+material = SubResource("StandardMaterial3D_wood")
+size = Vector3(1.9, 0.07, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_panel"]
+material = SubResource("StandardMaterial3D_wood")
+size = Vector3(1.8, 0.55, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_side"]
+material = SubResource("StandardMaterial3D_wood")
+size = Vector3(0.06, 0.72, 0.85)
+
+[node name="CourtTable" type="Node3D"]
+
+[node name="Top" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("BoxMesh_top")
+
+[node name="FrontPanel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -0.4)
+mesh = SubResource("BoxMesh_panel")
+
+[node name="SideLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.36, 0)
+mesh = SubResource("BoxMesh_side")
+
+[node name="SideRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.36, 0)
+mesh = SubResource("BoxMesh_side")

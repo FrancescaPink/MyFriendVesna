@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cqkm5cgrkp5fb"
+path="res://.godot/imported/table_round_A_small.obj-0616449871ed1d9f01674a97b7607e42.mesh"
+
+[deps]
+
+files=["res://.godot/imported/table_round_A_small.obj-0616449871ed1d9f01674a97b7607e42.mesh"]
+
+source_file="res://assets/restaurant/obj/table_round_A_small.obj"
+dest_files=["res://.godot/imported/table_round_A_small.obj-0616449871ed1d9f01674a97b7607e42.mesh", "res://.godot/imported/table_round_A_small.obj-0616449871ed1d9f01674a97b7607e42.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

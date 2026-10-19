@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b3d6ln0703t5y"
+path="res://.godot/imported/border-corner-small.obj-c345b00c89e99dd29782fc98cc00d731.mesh"
+
+[deps]
+
+files=["res://.godot/imported/border-corner-small.obj-c345b00c89e99dd29782fc98cc00d731.mesh"]
+
+source_file="res://assets/building-kit/Models/OBJ format/border-corner-small.obj"
+dest_files=["res://.godot/imported/border-corner-small.obj-c345b00c89e99dd29782fc98cc00d731.mesh", "res://.godot/imported/border-corner-small.obj-c345b00c89e99dd29782fc98cc00d731.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

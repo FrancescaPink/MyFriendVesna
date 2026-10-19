@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://7ibticgnbscg"
+path="res://.godot/imported/stove_single.obj-1b7de7f5e3c3a4d6d8937cdac9098099.mesh"
+
+[deps]
+
+files=["res://.godot/imported/stove_single.obj-1b7de7f5e3c3a4d6d8937cdac9098099.mesh"]
+
+source_file="res://assets/restaurant/obj/stove_single.obj"
+dest_files=["res://.godot/imported/stove_single.obj-1b7de7f5e3c3a4d6d8937cdac9098099.mesh", "res://.godot/imported/stove_single.obj-1b7de7f5e3c3a4d6d8937cdac9098099.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

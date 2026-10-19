@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dd24gyfjbhcid"
+path="res://.godot/imported/rug_rectangle_A.obj-7edd5c6d5b7352efee0e7765d4d4b6cd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/rug_rectangle_A.obj-7edd5c6d5b7352efee0e7765d4d4b6cd.mesh"]
+
+source_file="res://assets/furniture/obj/rug_rectangle_A.obj"
+dest_files=["res://.godot/imported/rug_rectangle_A.obj-7edd5c6d5b7352efee0e7765d4d4b6cd.mesh", "res://.godot/imported/rug_rectangle_A.obj-7edd5c6d5b7352efee0e7765d4d4b6cd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

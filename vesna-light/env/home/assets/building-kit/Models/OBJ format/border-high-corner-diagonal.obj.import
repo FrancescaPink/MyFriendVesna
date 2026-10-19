@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c70vgm2jik4vn"
+path="res://.godot/imported/border-high-corner-diagonal.obj-aa4b5eecc8e71fc55f3baee5cad75424.mesh"
+
+[deps]
+
+files=["res://.godot/imported/border-high-corner-diagonal.obj-aa4b5eecc8e71fc55f3baee5cad75424.mesh"]
+
+source_file="res://assets/building-kit/Models/OBJ format/border-high-corner-diagonal.obj"
+dest_files=["res://.godot/imported/border-high-corner-diagonal.obj-aa4b5eecc8e71fc55f3baee5cad75424.mesh", "res://.godot/imported/border-high-corner-diagonal.obj-aa4b5eecc8e71fc55f3baee5cad75424.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dbpkuhdxak6y6"
+path="res://.godot/imported/bed_single_B.obj-edfef6dba28815983cd188ed15e7ebca.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bed_single_B.obj-edfef6dba28815983cd188ed15e7ebca.mesh"]
+
+source_file="res://assets/furniture/obj/bed_single_B.obj"
+dest_files=["res://.godot/imported/bed_single_B.obj-edfef6dba28815983cd188ed15e7ebca.mesh", "res://.godot/imported/bed_single_B.obj-edfef6dba28815983cd188ed15e7ebca.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

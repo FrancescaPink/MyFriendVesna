@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://schlurokqt2y"
+path="res://.godot/imported/lid_large.obj-e6c651b14970e8ad51aefacbc8c43fd3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lid_large.obj-e6c651b14970e8ad51aefacbc8c43fd3.mesh"]
+
+source_file="res://assets/restaurant/obj/lid_large.obj"
+dest_files=["res://.godot/imported/lid_large.obj-e6c651b14970e8ad51aefacbc8c43fd3.mesh", "res://.godot/imported/lid_large.obj-e6c651b14970e8ad51aefacbc8c43fd3.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c3hy6qxctwywi"
+path="res://.godot/imported/gutter-vertical-bottom.obj-506c4e353d6b9ae94040f3f4e9b70ebf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gutter-vertical-bottom.obj-506c4e353d6b9ae94040f3f4e9b70ebf.mesh"]
+
+source_file="res://assets/building-kit/Models/OBJ format/gutter-vertical-bottom.obj"
+dest_files=["res://.godot/imported/gutter-vertical-bottom.obj-506c4e353d6b9ae94040f3f4e9b70ebf.mesh", "res://.godot/imported/gutter-vertical-bottom.obj-506c4e353d6b9ae94040f3f4e9b70ebf.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

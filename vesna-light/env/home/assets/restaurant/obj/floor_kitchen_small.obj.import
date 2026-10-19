@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://nm3hb34cwnsw"
+path="res://.godot/imported/floor_kitchen_small.obj-540d72631244a7e1f6b3f9ea7dc27ccf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/floor_kitchen_small.obj-540d72631244a7e1f6b3f9ea7dc27ccf.mesh"]
+
+source_file="res://assets/restaurant/obj/floor_kitchen_small.obj"
+dest_files=["res://.godot/imported/floor_kitchen_small.obj-540d72631244a7e1f6b3f9ea7dc27ccf.mesh", "res://.godot/imported/floor_kitchen_small.obj-540d72631244a7e1f6b3f9ea7dc27ccf.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

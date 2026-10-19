@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://w8q7q83avkgn"
+path="res://.godot/imported/stew_pot.obj-175362f17e4ce5f57ae6ef946a5b2b04.mesh"
+
+[deps]
+
+files=["res://.godot/imported/stew_pot.obj-175362f17e4ce5f57ae6ef946a5b2b04.mesh"]
+
+source_file="res://assets/restaurant/obj/stew_pot.obj"
+dest_files=["res://.godot/imported/stew_pot.obj-175362f17e4ce5f57ae6ef946a5b2b04.mesh", "res://.godot/imported/stew_pot.obj-175362f17e4ce5f57ae6ef946a5b2b04.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
