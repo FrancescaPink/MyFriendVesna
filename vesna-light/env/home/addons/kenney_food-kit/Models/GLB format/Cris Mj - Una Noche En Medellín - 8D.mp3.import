@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cek2isqtjux51"
+path="res://.godot/imported/Cris Mj - Una Noche En Medellín - 8D.mp3-a543e3b77a4683b31a69ad60c6a485c9.mp3str"
+
+[deps]
+
+source_file="res://addons/kenney_food-kit/Models/GLB format/Cris Mj - Una Noche En Medellín - 8D.mp3"
+dest_files=["res://.godot/imported/Cris Mj - Una Noche En Medellín - 8D.mp3-a543e3b77a4683b31a69ad60c6a485c9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
